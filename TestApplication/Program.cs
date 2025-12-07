@@ -11,32 +11,27 @@ public class Program
 
     public static void MoveZeroes(int[] nums)
     {
-        int n = nums.Length;
-        int start = 0;
-        int end = n - 1;
+        // Create temp array
+        int[] temp = new int[nums.Length];
 
-        if (n > 1)
+        // Pointer for temp
+        int index = 0;
+
+        // Traverse input array
+        for (int i = 0; i < nums.Length; i++)
         {
-            while (start < end)
+            // If non-zero, copy to temp
+            if (nums[i] != 0)
             {
-                if (nums[start] == 0)
-                {
-                    // Find the next non-zero from the end
-                    while (nums[end] == 0 && end > start)
-                    {
-                        end--;
-                    }
-                    if (start < end)
-                    {
-                        // Swap the zero with the non-zero value
-                        int temp = nums[start];
-                        nums[start] = nums[end];
-                        nums[end] = temp;
-                        end--; // move the 'end' pointer to the left
-                    }
-                }
-                start++; // move the 'start' pointer to the right
+                temp[index] = nums[i];
+                index++;
             }
+        }
+
+        // Copy temp back to original
+        for (int i = 0; i < nums.Length; i++)
+        {
+            nums[i] = temp[i];
         }
     }
 
